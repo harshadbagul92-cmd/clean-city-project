@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CleanNashik – Garbage Management Portal</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand" onclick="showPage('home')">
+    <div class="brand-logo">🌿</div>
+    <div class="brand-text-wrap">
+      <span class="brand-name">CleanNashik</span>
+      <span class="brand-sub">Garbage Management Portal</span>
+    </div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a class="nav-link" onclick="showPage('home')"><i class="fas fa-home"></i> Home</a></li>
+    <li><a class="nav-link" onclick="showPage('awareness')"><i class="fas fa-book-open"></i> Awareness</a></li>
+    <li><a class="nav-link" onclick="showPage('report')"><i class="fas fa-camera"></i> Report</a></li>
+    <li><a class="nav-link" onclick="showPage('segregation')"><i class="fas fa-recycle"></i> Segregation</a></li>
+    <li><a class="nav-link" onclick="showPage('quiz')"><i class="fas fa-gamepad"></i> Quiz</a></li>
+    <li><a class="nav-link" onclick="showPage('tracker')"><i class="fas fa-map-marker-alt"></i> Tracker</a></li>
+    <li><a class="nav-link" onclick="showPage('news')"><i class="fas fa-newspaper"></i> News</a></li>
+    <li><a class="nav-link" onclick="showPage('dashboard')"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+    <li><a class="nav-link" onclick="showPage('history')"><i class="fas fa-history"></i> History</a></li>
+    <li><a class="nav-link admin-nav" onclick="showPage('admin')"><i class="fas fa-shield-alt"></i> Admin</a></li>
+    <li><a class="nav-link" onclick="showPage('contact')"><i class="fas fa-phone"></i> Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="user-chip" id="userChip" onclick="showPage('profile')" style="display:none">
+      <div class="uc-av" id="ucAv">U</div>
+      <span id="ucName">User</span>
+    </div>
+    <button class="btn-auth" onclick="openAuth()" id="authBtn"><i class="fas fa-user-circle"></i> Login / Register</button>
+    <div class="hamburger" onclick="toggleNav()"><i class="fas fa-bars"></i></div>
+  </div>
+</nav>
+
+<main id="app">
+
+<!-- ============================================================ HOME -->
+<section id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-bg-art" id="heroBg"></div>
+    <div class="hero-content">
+      <div class="hero-chip"><span>🌱</span> Nashik's Official Clean City Initiative</div>
+      <h1 class="hero-h1">A Cleaner Nashik<br/><em class="hero-em">Starts With You</em></h1>
+      <p class="hero-p">Report garbage, track cleanliness, earn rewards. Join thousands of responsible citizens making Nashik beautiful, healthy and green.</p>
+      <div class="hero-btns">
+        <button class="btn-cta" onclick="showPage('report')"><i class="fas fa-camera"></i> Report Garbage</button>
+        <button class="btn-ghost" onclick="showPage('awareness')"><i class="fas fa-leaf"></i> Learn More</button>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="earth-orb">
+        <div class="eo-core">🌍</div>
+        <div class="eo-ring r1"><span>♻️</span></div>
+        <div class="eo-ring r2"><span>🌿</span></div>
+        <div class="eo-ring r3"><span>💧</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Strip -->
+  <div class="stats-strip">
+    <div class="ssc"><span class="sv" id="st1">0</span><span class="sl">Reports Filed</span></div>
+    <div class="ssc"><span class="sv" id="st2">0</span><span class="sl">Resolved</span></div>
+    <div class="ssc"><span class="sv" id="st3">0</span><span class="sl">Active Citizens</span></div>
+    <div class="ssc"><span class="sv" id="st4">0</span><span class="sl">Kg Collected</span></div>
+  </div>
+
+  <!-- Area Live Status -->
+  <div class="wrap">
+    <h2 class="sec-title">📍 Nashik Area Live Status</h2>
+    <div class="area-status-grid" id="homeAreaGrid"></div>
+  </div>
+
+  <!-- Feature Cards -->
+  <div class="wrap">
+    <h2 class="sec-title">What You Can Do</h2>
+    <div class="feat-grid">
+      <div class="feat-card" onclick="showPage('report')"><div class="fc-ico">📸</div><h3>Report Garbage</h3><p>Snap a photo with GPS location and submit instantly.</p></div>
+      <div class="feat-card" onclick="showPage('awareness')"><div class="fc-ico">📚</div><h3>Get Educated</h3><p>Learn about waste types, harmful effects and eco habits.</p></div>
+      <div class="feat-card" onclick="showPage('segregation')"><div class="fc-ico">🗑️</div><h3>Segregation Guide</h3><p>Find the correct dustbin for any waste item instantly.</p></div>
+      <div class="feat-card" onclick="showPage('quiz')"><div class="fc-ico">🎮</div><h3>Eco Quiz</h3><p>Test your knowledge and earn eco-champion badges.</p></div>
+      <div class="feat-card" onclick="showPage('tracker')"><div class="fc-ico">📍</div><h3>Area Tracker</h3><p>Monitor cleanliness levels across all Nashik zones.</p></div>
+      <div class="feat-card" onclick="showPage('news')"><div class="fc-ico">📰</div><h3>News & Alerts</h3><p>Admin updates and public offender awareness board.</p></div>
+    </div>
+  </div>
+
+  <!-- Slogans -->
+  <div class="slogans-belt">
+    <h2 class="sec-title" style="text-align:center;color:#fff;padding:40px 0 20px">Our Slogans</h2>
+    <div class="slogan-row">
+      <div class="slogan-pill sp1">"Keep Nashik Green, Keep Nashik Clean"</div>
+      <div class="slogan-pill sp2">"Don't Litter – Be a Quitter"</div>
+      <div class="slogan-pill sp3">"Your City, Your Duty"</div>
+      <div class="slogan-pill sp4">"Recycle Today for a Better Tomorrow"</div>
+      <div class="slogan-pill sp5">"Waste Not, Want Not"</div>
+      <div class="slogan-pill sp6">"One Earth, One Chance – Act Now"</div>
+    </div>
+  </div>
+
+  <!-- Schedule -->
+  <div class="wrap">
+    <h2 class="sec-title">📅 Garbage Collection Schedule</h2>
+    <div class="sch-grid">
+      <div class="sch-c"><b>Monday</b><span>Panchavati – All Wards</span></div>
+      <div class="sch-c"><b>Tuesday</b><span>Nashik Road – Main Market</span></div>
+      <div class="sch-c"><b>Wednesday</b><span>Dwarka – Residential Zones</span></div>
+      <div class="sch-c"><b>Thursday</b><span>College Road – Institutions</span></div>
+      <div class="sch-c"><b>Friday</b><span>All Areas – Hazardous Pickup</span></div>
+      <div class="sch-c"><b>Saturday</b><span>Deep Clean – All Zones</span></div>
+    </div>
+  </div>
+
+  <!-- Leaderboard -->
+  <div class="wrap" style="text-align:center">
+    <h2 class="sec-title">🏆 Top Eco Champions</h2>
+    <div id="homeLB" class="lb-list"></div>
+    <button class="btn-outline-g" onclick="showPage('dashboard')" style="margin-top:18px">View Full Leaderboard →</button>
+  </div>
+</section>
+
+
+<!-- ============================================================ AWARENESS -->
+<section id="page-awareness" class="page">
+  <div class="page-hdr">
+    <h1>📚 Awareness & Education</h1>
+    <p>Understanding garbage's impact on health, environment and Nashik's future</p>
+  </div>
+  <div class="wrap">
+    <h2 class="sec-title">⚠️ Harmful Effects of Garbage</h2>
+    <div class="eff-grid">
+      <div class="eff-card"><div class="ei">🦠</div><h4>Disease Spread</h4><p>Uncollected waste breeds mosquitoes and rodents, causing dengue, cholera and typhoid.</p></div>
+      <div class="eff-card"><div class="ei">💧</div><h4>Water Pollution</h4><p>Garbage toxins seep into groundwater and Nashik's rivers, contaminating drinking sources.</p></div>
+      <div class="eff-card"><div class="ei">🌬️</div><h4>Air Pollution</h4><p>Burning waste releases dioxins, CO₂ and carcinogens into the air we breathe daily.</p></div>
+      <div class="eff-card"><div class="ei">🐾</div><h4>Animal Harm</h4><p>Street animals ingest plastic, causing painful injuries and premature death.</p></div>
+      <div class="eff-card"><div class="ei">🌡️</div><h4>Climate Change</h4><p>Decomposing organic waste produces methane — 25× stronger than CO₂ as a greenhouse gas.</p></div>
+      <div class="eff-card"><div class="ei">😰</div><h4>Mental Stress</h4><p>Living in dirty surroundings increases stress, anxiety and reduces quality of life.</p></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <h2 class="sec-title">🗑️ Types of Waste & Dustbins</h2>
+    <div class="wt-grid">
+      <div class="wt-card g-wt"><div class="wt-hdr"><span>🟢</span><div><h3>Wet Waste</h3><small>Green Bin</small></div></div><p>Organic, biodegradable kitchen and garden waste.</p><ul><li>Vegetable & fruit peels</li><li>Cooked food leftovers</li><li>Tea/coffee grounds</li><li>Grass & flower clippings</li></ul></div>
+      <div class="wt-card b-wt"><div class="wt-hdr"><span>🔵</span><div><h3>Dry Waste</h3><small>Blue Bin</small></div></div><p>Recyclable materials — clean before disposing.</p><ul><li>Newspapers & cardboard</li><li>Plastic bottles</li><li>Glass jars & bottles</li><li>Aluminium & tin cans</li></ul></div>
+      <div class="wt-card r-wt"><div class="wt-hdr"><span>🔴</span><div><h3>Hazardous Waste</h3><small>Red Bin</small></div></div><p>Toxic materials — handle with care, never mix.</p><ul><li>Old batteries</li><li>Expired medicines</li><li>Paints & chemicals</li><li>Insecticides</li></ul></div>
+      <div class="wt-card k-wt"><div class="wt-hdr"><span>⚫</span><div><h3>E-Waste</h3><small>E-Waste Centre</small></div></div><p>Discarded electronics with toxic metals inside.</p><ul><li>Old phones & laptops</li><li>Chargers & cables</li><li>Circuit boards</li><li>Old TVs & monitors</li></ul></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <h2 class="sec-title">♻️ Reduce · Reuse · Recycle</h2>
+    <div class="rrr-row">
+      <div class="rrr-card"><div class="rrr-n">1</div><h3>REDUCE</h3><p>Buy only what you need. Avoid single-use plastics. Choose products with minimal packaging.</p></div>
+      <div class="rrr-arrow">→</div>
+      <div class="rrr-card"><div class="rrr-n">2</div><h3>REUSE</h3><p>Repair instead of replace. Use cloth bags. Donate old items instead of throwing them away.</p></div>
+      <div class="rrr-arrow">→</div>
+      <div class="rrr-card"><div class="rrr-n">3</div><h3>RECYCLE</h3><p>Segregate waste daily. Support recycling drives. Buy products made from recycled materials.</p></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <h2 class="sec-title">✅ Do's and Don'ts</h2>
+    <div class="dd-grid">
+      <div class="dd-card do-card"><h3>✅ Do's</h3><ul>
+        <li>Segregate waste at the source</li><li>Always use proper dustbins</li>
+        <li>Compost wet waste at home</li><li>Report illegal dumping immediately</li>
+        <li>Use cloth or paper bags</li><li>Spread awareness to neighbours</li>
+        <li>Participate in NMC clean-up drives</li>
+      </ul></div>
+      <div class="dd-card dont-card"><h3>❌ Don'ts</h3><ul>
+        <li>Don't litter on streets or roads</li><li>Don't burn waste openly</li>
+        <li>Don't mix hazardous with organic waste</li><li>Don't dump near water bodies</li>
+        <li>Don't ignore garbage near you</li><li>Don't use single-use plastics</li>
+        <li>Don't dispose e-waste carelessly</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="wrap" style="text-align:center">
+    <h2 class="sec-title">💡 Daily Eco Tips</h2>
+    <div class="tips-car">
+      <div id="tipsInner">
+        <div class="tip-sl active-tip">🛍️ Carry a reusable bag every time you shop — saves hundreds of plastic bags a year.</div>
+        <div class="tip-sl">🚿 Take shorter showers. Less water used means less energy at treatment plants.</div>
+        <div class="tip-sl">🔋 Unplug chargers when not in use — standby power is invisible but real waste.</div>
+        <div class="tip-sl">🍎 Compost kitchen scraps at home — turn waste into nutrient-rich garden fertilizer.</div>
+        <div class="tip-sl">📦 Choose products with minimal or recyclable packaging whenever you shop.</div>
+        <div class="tip-sl">🚴 Walk or cycle for short distances — reduce carbon footprint and stay healthy!</div>
+      </div>
+      <div class="tip-nav-btns"><button onclick="prevTip()">‹</button><button onclick="nextTip()">›</button></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ REPORT -->
+<section id="page-report" class="page">
+  <div class="page-hdr">
+    <h1>📸 Report Garbage</h1>
+    <p>Spot garbage? Report it with photo and GPS. Our NMC teams respond promptly.</p>
+  </div>
+  <div class="wrap">
+    <div class="report-layout">
+      <div class="rpt-form-box">
+        <h3><i class="fas fa-edit"></i> Submit a Complaint</h3>
+        <div class="fg"><label>Your Name *</label><input id="rName" placeholder="Enter your name"/></div>
+        <div class="fg"><label>Select Area *</label>
+          <select id="rArea">
+            <option value="">-- Select Nashik Area --</option>
+            <option>Panchavati</option><option>Nashik Road</option>
+            <option>Dwarka</option><option>College Road</option>
+          </select>
+        </div>
+        <div class="fg"><label>Exact Location / Landmark</label>
+          <input id="rLandmark" placeholder="e.g. Near Panchavati Bridge, Ram Wadi"/></div>
+        <div class="fg">
+          <label>📡 Auto GPS Detection</label>
+          <button class="btn-geo" onclick="getGPS()"><i class="fas fa-crosshairs"></i> Detect My Location</button>
+          <span id="gpsOut" class="gps-tag"></span>
+          <input type="hidden" id="gpsVal"/>
+        </div>
+        <div class="fg">
+          <label>📸 Live Camera Capture</label>
+          <div class="cam-box">
+            <video id="camFeed" autoplay playsinline></video>
+            <canvas id="camCanvas" style="display:none"></canvas>
+            <img id="camSnap" style="display:none" alt="Captured"/>
+            <div class="cam-ctrl">
+              <button class="btn-cam" onclick="openCam()"><i class="fas fa-video"></i> Open Camera</button>
+              <button class="btn-cam" id="snapBtn" style="display:none" onclick="snap()"><i class="fas fa-circle"></i> Snap Photo</button>
+              <button class="btn-cam" id="retakeBtn" style="display:none" onclick="retake()"><i class="fas fa-redo"></i> Retake</button>
+            </div>
+          </div>
+        </div>
+        <div class="fg"><label>Or Upload Photo</label>
+          <input type="file" id="photoUp" accept="image/*" onchange="uploadPic(event)"/></div>
+        <div class="fg"><label>Description *</label>
+          <textarea id="rDesc" rows="3" placeholder="Describe the garbage issue clearly..."></textarea></div>
+        <div class="fg"><label>Severity Level</label>
+          <select id="rSev">
+            <option value="low">🟢 Low – Minor scattered litter</option>
+            <option value="medium">🟡 Medium – Noticeable garbage pile</option>
+            <option value="high">🔴 High – Large dump / hazardous material</option>
+          </select>
+        </div>
+        <button class="btn-submit" onclick="submitReport()"><i class="fas fa-paper-plane"></i> Submit Report</button>
+      </div>
+      <div class="rpt-feed-box">
+        <h3><i class="fas fa-stream"></i> Recent Reports</h3>
+        <div id="reportFeed" class="rpt-feed"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ SEGREGATION -->
+<section id="page-segregation" class="page">
+  <div class="page-hdr"><h1>♻️ Waste Segregation Guide</h1><p>Search any item and instantly find the correct dustbin</p></div>
+  <div class="wrap">
+    <div class="seg-search">
+      <input id="segQ" placeholder="Type item (e.g. banana peel, battery, newspaper, mobile phone)..." oninput="doSeg()"/>
+      <button onclick="doSeg()"><i class="fas fa-search"></i></button>
+    </div>
+    <div id="segAns"></div>
+    <div class="bins-grid">
+      <div class="bin-card g-bin"><div class="bin-dot">🟢</div><h3>Green Bin</h3><h4>Wet / Organic</h4><ul id="gbList"></ul></div>
+      <div class="bin-card b-bin"><div class="bin-dot">🔵</div><h3>Blue Bin</h3><h4>Dry / Recyclable</h4><ul id="bbList"></ul></div>
+      <div class="bin-card r-bin"><div class="bin-dot">🔴</div><h3>Red Bin</h3><h4>Hazardous</h4><ul id="rbList"></ul></div>
+      <div class="bin-card k-bin"><div class="bin-dot">⚫</div><h3>E-Waste Bin</h3><h4>Electronics</h4><ul id="ewList"></ul></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ QUIZ -->
+<section id="page-quiz" class="page">
+  <div class="page-hdr"><h1>🎮 Eco Awareness Quiz</h1><p>10 questions · Earn badges · Learn eco facts</p></div>
+  <div class="quiz-wrap">
+    <div id="qzStart" class="qz-start">
+      <div class="qz-globe">🌍</div>
+      <h2>Ready to Test Your Knowledge?</h2>
+      <p>Answer 10 questions about waste management and the environment</p>
+      <button class="btn-submit" onclick="startQuiz()"><i class="fas fa-play"></i> Start Quiz</button>
+    </div>
+    <div id="qzPlay" style="display:none">
+      <div class="qz-prog-row">
+        <div class="qz-prog-track"><div class="qz-prog-fill" id="qFill"></div></div>
+        <span id="qCnt">1 / 10</span>
+      </div>
+      <div class="qz-card">
+        <h3 id="qQ"></h3>
+        <div id="qOpts" class="qz-opts"></div>
+        <div id="qFb" class="qz-fb" style="display:none"></div>
+        <button id="qNext" class="btn-submit" style="display:none;margin-top:16px" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+    <div id="qzDone" style="display:none" class="qz-done">
+      <div id="qzBadge" class="qz-badge"></div>
+      <h2 id="qzTitle"></h2>
+      <p id="qzScoreTxt"></p>
+      <div id="qzExps" class="qz-exps"></div>
+      <button class="btn-submit" onclick="resetQuiz()"><i class="fas fa-redo"></i> Play Again</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ TRACKER -->
+<section id="page-tracker" class="page">
+  <div class="page-hdr"><h1>📍 Nashik Area Garbage Tracker</h1><p>Live cleanliness status and management updates across all Nashik zones</p></div>
+  <div class="wrap">
+    <div class="tracker-grid" id="trackerGrid"></div>
+    <h2 class="sec-title" style="margin-top:48px">🔴 Live Activity Monitor</h2>
+    <p class="note-p">Real-time log of all reported activities, offender flags and resolutions.</p>
+    <div class="act-log" id="actLog"></div>
+  </div>
+</section>
+
+
+<!-- ============================================================ NEWS -->
+<section id="page-news" class="page">
+  <div class="page-hdr"><h1>📰 News & Updates</h1><p>Official garbage management news and public offender alerts</p></div>
+  <div class="wrap">
+    <div class="news-layout">
+      <div id="newsFeed" class="news-main"></div>
+      <aside class="news-side">
+        <div class="side-panel">
+          <h3><i class="fas fa-exclamation-triangle"></i> Public Offenders</h3>
+          <p class="side-note">People caught littering openly. Public awareness creates real accountability and behaviour change.</p>
+          <div id="offFeed"></div>
+        </div>
+        <div class="side-panel">
+          <h3><i class="fas fa-info-circle"></i> Quick Stats</h3>
+          <div id="newsStats"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ DASHBOARD -->
+<section id="page-dashboard" class="page">
+  <div class="page-hdr"><h1>📊 Dashboard & Statistics</h1><p>Real-time impact of CleanNashik citizen action</p></div>
+  <div class="wrap">
+    <div class="kpi-row" id="kpiRow"></div>
+    <div class="charts-row">
+      <div class="chart-panel"><h3>Reports by Area</h3><canvas id="areaChart" width="420" height="260"></canvas></div>
+      <div class="chart-panel"><h3>Severity Breakdown</h3><canvas id="sevChart" width="320" height="260"></canvas></div>
+    </div>
+    <h2 class="sec-title">🏆 Community Leaderboard</h2>
+    <div id="fullLB" class="lb-list"></div>
+  </div>
+</section>
+
+
+<!-- ============================================================ HISTORY -->
+<section id="page-history" class="page">
+  <div class="page-hdr"><h1>📋 Complaint History</h1><p>Complete record — Who · When · What · Which Area</p></div>
+  <div class="wrap">
+    <div class="hist-bar">
+      <select id="hFilt" onchange="renderHistory()">
+        <option value="all">All Status</option>
+        <option value="pending">Pending Only</option>
+        <option value="resolved">Resolved Only</option>
+      </select>
+      <select id="hArea" onchange="renderHistory()">
+        <option value="all">All Areas</option>
+        <option>Panchavati</option><option>Nashik Road</option>
+        <option>Dwarka</option><option>College Road</option>
+      </select>
+      <input id="hSearch" placeholder="Search name or area..." oninput="renderHistory()"/>
+    </div>
+    <div id="histOut"></div>
+    <div id="histSumm" class="hist-summ"></div>
+  </div>
+</section>
+
+
+<!-- ============================================================ ADMIN PORTAL -->
+<section id="page-admin" class="page">
+  <div class="page-hdr admin-hdr-bg">
+    <h1><i class="fas fa-shield-alt"></i> Admin Portal</h1>
+    <p>Secure management dashboard — CleanNashik administrators only</p>
+  </div>
+
+  <!-- Login Screen -->
+  <div id="adminLoginWrap" class="wrap">
+    <div class="admin-login-box">
+      <div class="al-ico">🔐</div>
+      <h2>Admin Login</h2>
+      <p>Enter your credentials to access the admin portal</p>
+      <div class="fg"><label>Username</label><input id="aUser" placeholder="admin"/></div>
+      <div class="fg"><label>Password</label><input id="aPass" type="password" placeholder="Enter password"/></div>
+      <button class="btn-submit" onclick="adminLogin()"><i class="fas fa-sign-in-alt"></i> Login to Admin Portal</button>
+      <p id="aErr" class="err-p" style="display:none">❌ Invalid credentials. Try: admin / admin123</p>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard (shown after login) -->
+  <div id="adminDash" style="display:none">
+    <div class="wrap">
+
+      <!-- Admin Profile Banner -->
+      <div class="admin-banner">
+        <div class="ab-left">
+          <div class="ab-av">A</div>
+          <div class="ab-info">
+            <h2 id="abName">Administrator</h2>
+            <span class="ab-badge"><i class="fas fa-shield-alt"></i> Super Admin · CleanNashik</span>
+            <span class="ab-stat" id="abStat">Full portal access enabled</span>
+          </div>
+        </div>
+        <button class="btn-logout" onclick="adminLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+
+      <!-- Admin Tab Nav -->
+      <div class="atab-nav">
+        <button class="atab active" onclick="adminTab('reports')"><i class="fas fa-list-alt"></i> All Reports</button>
+        <button class="atab" onclick="adminTab('users')"><i class="fas fa-users"></i> All Users</button>
+        <button class="atab" onclick="adminTab('postnews')"><i class="fas fa-newspaper"></i> Post News</button>
+        <button class="atab" onclick="adminTab('offenders')"><i class="fas fa-user-slash"></i> Offenders</button>
+      </div>
+
+      <!-- Tab: Reports -->
+      <div id="atab-reports" class="atab-pane">
+        <h3 class="atab-title">📋 All Complaint Reports</h3>
+        <div id="aRptList"></div>
+      </div>
+
+      <!-- Tab: Users -->
+      <div id="atab-users" class="atab-pane" style="display:none">
+        <h3 class="atab-title">👥 All Registered Users</h3>
+        <div id="aUserList"></div>
+      </div>
+
+      <!-- Tab: Post News -->
+      <div id="atab-postnews" class="atab-pane" style="display:none">
+        <h3 class="atab-title">📰 Publish a News Article</h3>
+        <div class="admin-form">
+          <div class="fg"><label>Headline</label><input id="nHead" placeholder="News headline..."/></div>
+          <div class="fg"><label>Full Content</label><textarea id="nBody" rows="4" placeholder="News content..."></textarea></div>
+          <div class="fg"><label>Category</label>
+            <select id="nCat">
+              <option value="update">📢 General Update</option>
+              <option value="event">📅 Event / Drive</option>
+              <option value="achievement">🏆 Achievement</option>
+              <option value="alert">🚨 Alert</option>
+            </select>
+          </div>
+          <button class="btn-submit" onclick="postNews()"><i class="fas fa-paper-plane"></i> Publish Now</button>
+        </div>
+        <h4 style="margin:28px 0 12px;color:var(--olive-dk)">Published Articles</h4>
+        <div id="aNewsList"></div>
+      </div>
+
+      <!-- Tab: Offenders -->
+      <div id="atab-offenders" class="atab-pane" style="display:none">
+        <h3 class="atab-title">⚠️ Post Public Offender Alert</h3>
+        <div class="admin-form">
+          <div class="fg"><label>Offender Name / Description</label><input id="offNm" placeholder="Full name or description of offender"/></div>
+          <div class="fg"><label>Incident Area</label>
+            <select id="offAr">
+              <option>Panchavati</option><option>Nashik Road</option>
+              <option>Dwarka</option><option>College Road</option>
+            </select>
+          </div>
+          <div class="fg"><label>Incident Details</label><textarea id="offDsc" rows="3" placeholder="Describe the littering incident..."></textarea></div>
+          <button class="btn-submit" onclick="addOffender()"><i class="fas fa-flag"></i> Post Alert</button>
+        </div>
+        <h4 style="margin:28px 0 12px;color:var(--olive-dk)">Current Offender Alerts</h4>
+        <div id="aOffList"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ PROFILE -->
+<section id="page-profile" class="page">
+  <div class="page-hdr"><h1>👤 My Profile</h1><p>Your activity, uploaded reports, points and achievements</p></div>
+  <div class="wrap" id="profileContent"></div>
+</section>
+
+
+<!-- ============================================================ CONTACT -->
+<section id="page-contact" class="page">
+  <div class="page-hdr"><h1>📞 Contact & Help</h1><p>Municipal contacts, emergency numbers and frequently asked questions</p></div>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-card"><i class="fas fa-phone-alt"></i><h3>NMC Helpline</h3><p>1800-233-NASHIK</p><p>Mon–Sat · 9AM – 6PM</p></div>
+      <div class="contact-card"><i class="fas fa-exclamation-triangle"></i><h3>Emergency Waste</h3><p>Hazardous: 1800-123-4567</p><p>24×7 Response Team</p></div>
+      <div class="contact-card"><i class="fas fa-envelope-open-text"></i><h3>Email Support</h3><p>cleannashik@nmc.gov.in</p><p>Reply within 24 hours</p></div>
+      <div class="contact-card"><i class="fas fa-building"></i><h3>NMC Main Office</h3><p>Rajiv Gandhi Bhavan, Nashik</p><p>Mon–Sat · 10AM – 5PM</p></div>
+    </div>
+    <h2 class="sec-title" style="margin-top:48px">❓ Frequently Asked Questions</h2>
+    <div id="faqList" class="faq-list"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- AUTH MODAL -->
+<div id="authModal" class="modal-overlay" style="display:none">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeAuth()">×</button>
+    <div class="auth-switch">
+      <button class="as-btn active" id="asLogin" onclick="switchAuth('login')">Login</button>
+      <button class="as-btn" id="asReg" onclick="switchAuth('reg')">Register</button>
+    </div>
+    <div id="loginForm">
+      <div class="modal-icon">🌿</div>
+      <h2>Welcome Back!</h2>
+      <p>Login to access your profile and track your reports</p>
+      <div class="fg"><label>Your Registered Name</label><input id="liName" placeholder="Enter your name"/></div>
+      <button class="btn-submit" onclick="loginUser()"><i class="fas fa-sign-in-alt"></i> Login</button>
+      <div id="liMsg" class="auth-msg"></div>
+    </div>
+    <div id="regForm" style="display:none">
+      <div class="modal-icon">🌱</div>
+      <h2>Join CleanNashik!</h2>
+      <p>Register to report garbage, earn points and make Nashik clean</p>
+      <div class="fg"><label>Your Full Name</label><input id="rgName" placeholder="Enter your full name"/></div>
+      <button class="btn-submit" onclick="registerUser()"><i class="fas fa-user-plus"></i> Register</button>
+      <div id="rgMsg" class="auth-msg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
